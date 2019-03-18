@@ -1,0 +1,126 @@
+﻿@model IndexViewModel
+
+<form class="container search" id="search-form" action="" method="get">
+    <h2 class="headline">Her finder du gaver til enhver lejlighed</h2>
+    <div class="row" id="allElements">
+
+        <div class="col-xs-3">
+            <label for="slider">Pris i kr: <input type="text" name="sliderPrice" id="ammount" readonly /></label>
+            <div id="slider-range"></div>
+        </div>
+        <div class="col-xs-2 selectContainer center">
+            <select class="select"  name="occasion">
+              @for(int i = 0; i < Model.DistinctOccasion.Count; i++)
+              {
+                  string occ = Model.DistinctOccasion[i];
+                  <option value=@occ>@occ</option>
+              }
+            </select>
+        </div>
+        <div class="col-xs-2 selectContainer center">
+            <select class="select" name="category">
+                @for (int i = 0; i < Model.DistinctCategory.Count; i++)
+                {
+                    string cat = Model.DistinctCategory[i];
+                    <option value=@cat>@cat</option>
+                }
+
+            </select>
+        </div>
+        <div class="col-xs-2 selectContainer center">
+            <select class="select " name="who">
+                @for (int i = 0; i < Model.DistinctWho.Count; i++)
+                {
+                    string who = Model.DistinctWho[i];
+                    <option value=@who>@who</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="col-xs-2 btn btn-default" id="searchBtn">Søg</button>
+    </div>
+</form>
+
+<div class="container search" id="first-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 class="headline">@Model.HeadLine</h2>
+        </div>
+    </div>
+    @for (int i = 0; i < Model.PresentResultsLimit.Count; i++)
+    {
+
+        if (i % 3 == 0 && i > 0)
+        {
+            @Html.Raw("</div>")
+        }
+        if (i % 3 == 0)
+        {
+            @Html.Raw("<div class=row>")
+        }
+        <div class="col-xs-4 ">
+            <a href="@Model.PresentResultsLimit[i].LinkToPresent" target="_blank" class="present-image">
+                <img src="~/images/PresentsPic/@Model.PresentResultsLimit[i].Image" data-id="@Model.PresentResultsLimit[i].Id" alt="Alternate Text" />
+            </a>
+            <p class="presentName">@Model.PresentResultsLimit[i].Name</p>
+            <p class="price">Fra kr. @Model.PresentResultsLimit[i].Price</p>
+            <p class="presentText">@Model.PresentResultsLimit[i].Description </p>
+            @if (Model.PresentResultsLimit[i].Description.Length > 50) {
+                <button class="btn-default btn read-more">Læs mere</button>
+            }
+        </div>
+        if (i == Model.PresentResultsLimit.Count - 1)
+        {
+            @Html.Raw("</div>")
+        }
+    }
+
+    <div class="pagination-wrapper">
+        @if (Model.HasPrevPage && Model.PresentsResults.Count != 0) {
+            <a class="btn-default btn pagination-button regular-pagination" data-page="@ViewData["prevPage"]" href="">Forrige</a>
+        }
+        @if (Model.HasNextPage && Model.PresentsResults.Count != 0) {
+            <a class="btn-default btn pagination-button regular-pagination" data-page="@ViewData["nextPage"]" href="">Næste</a>
+        }
+    </div>
+
+</div>
+<div class="container search" id="popularPresents">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="headline">Mest populære gaver</h1>
+        </div>
+    </div>
+    <div class="row">
+
+        @for (int i = 0; i < Model.PopularPresents.Count; i++)
+            {
+                <div class="col-xs-4">
+                    <a href="@Model.PopularPresents[i].LinkToPresent" target="_blank" class="present-image">
+                        <img src="~/images/PresentsPic/@Model.PopularPresents[i].Image" data-id="@Model.PopularPresents[i].Id" alt="Alternate Text" />
+                    </a>
+                    <p class="presentName">@Model.PopularPresents[i].Name</p>
+                    <p class="price">Fra kr. @Model.PopularPresents[i].Price</p>
+                    <p class="presentText">@Model.PopularPresents[i].Description </p>
+
+                    <button class="btn-default btn read-more">Læs mere</button>
+                </div>
+            }
+    </div>
+
+     <div class="pagination-wrapper">
+        @if (Model.PopHasPrevPage && Model.PopularPresents.Count != 0) {
+            <a class="btn-default btn pagination-button popular-pagination" data-page="@ViewData["prevPagePopular"]" href="">Forrige</a>
+        }
+        @if (Model.PopHasNextPage && Model.PopularPresents.Count != 0) {
+            <a class="btn-default btn pagination-button popular-pagination" data-page="@ViewData["nextPagePopular"]" href="">Næste</a>
+        }
+    </div>
+</div>
+
+
+
+   
+
+   
+
+

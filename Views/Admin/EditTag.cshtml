@@ -1,0 +1,36 @@
+﻿@using FindGavenCore
+@model EditViewModel
+@{
+    ViewData["Title"] = "EditTags";
+}
+
+
+<div class="container">
+    @ViewData["error"]
+    <h3>Tilføj/Fjern @Model.Headline</h3> <br />
+    <label for="">Vælg gave</label>
+    <form method="post">
+        <input type="hidden" name="Model.WhatType" value="@Model.WhatType" />
+        <input type="hidden" name="Model.Headline" value="@Model.Headline" />
+
+        <select name="Model.PresentId">
+
+            @for (int i = 0; i < Model.Presents.Count; i++)
+            {
+                <option value="@Model.Presents[i].Id">@Model.Presents[i].Name</option>
+            }
+        </select><br /><br />
+        <label>Vælg værdi</label><br />
+        <select name="Model.Value">
+            @for (int i = 0; i < Model.ParamValues.Count; i++)
+            {
+                <option value="@Model.ParamValues[i]">@Model.ParamValues[i]</option>
+            }
+        </select><br /><br />
+        <button type="submit" name="submitButton" value="add" class="col-xs-2 btn btn-default" id="buttonAddTag">Tilføj tag</button>
+        <button type="submit" name="submitButton" value="remove" class="col-xs-2 btn btn-default">Fjern tag</button> <br /><br /><br />
+
+    </form>
+    <a href="/Admin/Login">Tilbage</a>
+</div>
+<hr />

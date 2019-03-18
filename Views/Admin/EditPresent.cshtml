@@ -1,0 +1,55 @@
+﻿@using FindGavenCore
+@model EditViewModel
+@{
+    ViewData["Title"] = "EditPresent";
+}
+
+<div class="container">
+    @ViewData["error"]
+    <h2>Fjern gave</h2> <br />
+    <label>Vælg gave</label>
+    <form action="/admin/editPresent" method="post">
+        <select asp-for="@Model.PresentId">
+
+            @for (int i = 0; i < Model.Presents.Count; i++)
+            {
+                <option value="@Model.Presents[i].Id">@Model.Presents[i].Name</option>
+            }
+        </select>
+        <br /><br />
+        <button type="submit" class="col-xs-2 btn btn-default">Fjern gave</button>
+
+    </form>
+</div>
+<hr />
+
+<div class="container">
+    <h2>Tilføj gave</h2> <br />
+    <form action="/admin/editPresent" method="post">
+
+        <label for="nameInput">Gavens navn</label><br />
+        <input type="text" asp-for="@Model.Name" /><br /><br />
+        <label for="decriptionInput">Beskrivelse</label><br />
+        <textarea asp-for="@Model.Description" id="descriptionInput"></textarea><br /><br />
+        <label for="priceInput">Pris</label><br />
+        <input type="text" asp-for="@Model.Price" id="imageInput" value="" /><br /><br />
+        <label for="imageInput">Billedsti</label><br />
+        <input type="text" asp-for="@Model.Image" id="imageInput" value="" /><br /><br />
+        <label for="presentLink">Link</label><br />
+        <input type="text" asp-for="@Model.Link" id="presentLink" /><br /><br />
+        <label for="providerId">Udbyder</label><br />
+        <select asp-for="@Model.ProviderId">
+            @for (int i = 0; i < Model.Providers.Count; i++)
+            {
+                <option value="@Model.Providers[i].Id">@Model.Providers[i].Name</option>
+            }
+
+        </select>
+
+        <br /><br />
+        <button type="submit" class="col-xs-2 btn btn-default">Tilføj gave</button><br /><br />
+
+    </form>
+
+    <a href="/Admin/Login" style="margin-bottom: 35px;">Tilbage</a>
+</div>

@@ -1,0 +1,20 @@
+﻿
+.form-login{
+    margin-top: 200px;
+    margin-left: 200px;
+}
+h1{
+    text-align: center;
+}
+#buttonAddTag{
+    margin-right: 10px;
+}
+.Headline{
+    font-weight: bold;
+    font-size: 23px;
+    padding-bottom: 50px;
+}
+.SubHeadline{
+    font-weight: bold;
+    font-size: 17px;
+}

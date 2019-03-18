@@ -1,0 +1,124 @@
+﻿body {
+    background-color: lightgray;
+}
+
+.presentText {
+    padding-top: 7px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 25px;
+}
+
+.expanded {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    height: auto;
+}
+
+.read-more {
+    margin-bottom: 20px !important;
+}
+
+.footer {
+    background-color: #f44242;
+    margin-bottom: 20px;
+    height: 60px;
+}
+
+    .footer p {
+        text-align: center;
+        font-size: 20px;
+        color: white;
+        padding-top: 17px;
+    }
+
+.search {
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    box-shadow: 2px 4px 12px 0 rgba(0, 0, 0, .1);
+    border-radius: 5px;
+}
+
+.fixed {
+    position: fixed;
+    background-color: white;
+    z-index: 9999;
+    top: 0;
+    margin-top: 0 !important;
+    left:0;
+    right:0;
+}
+
+.headline {
+    padding-bottom: 15px;
+}
+
+#topHeadline {  
+    color: #f44242
+    
+}
+.topBarBtn{
+    margin-top: 20px;
+}
+.topBar{   
+    margin-top: 5px;
+}
+.selectContainer {
+    height: 30px;
+}
+
+.select {
+    width: 75%;
+    height: 100%;
+    text-align-last: center;
+}
+
+
+#allElements {
+    padding-bottom: 20px;
+}
+
+#searchBtn {
+    width: 70px;
+}
+
+.price {
+    padding-top: 5px;
+    margin-bottom: 0;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#ammount{
+    border:none;
+    cursor:default;
+}
+.presentName{
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+.pagination-wrapper {
+    margin: 0 auto;
+    width: 175px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+}
+
+.pagination-button {
+    text-decoration: none;
+    text-align: center;
+
+    width: 49%;
+}
+
+.pagination-button:hover, .pagination-button:active, .pagination-button:visited, .pagination-button:focus
+{
+    text-decoration: none;
+}

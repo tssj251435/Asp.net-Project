@@ -1,0 +1,14 @@
+@model IEnumerable<Provider>
+
+<div class="dropdown">
+    <button class="btn btn-default topBarBtn dropdown-toggle" type="button" data-toggle="dropdown">
+        Gaveubydere
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        @foreach (var provider in Model)
+        {
+            <li><a href="/providers/@provider.Id">@provider.Name</a></li>
+        }
+    </ul>
+</div>

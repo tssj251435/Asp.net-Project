@@ -1,0 +1,37 @@
+﻿@using FindGavenCore
+@model EditViewModel
+
+<div class="container">
+    @ViewData["Error"]
+    <h2>Fjern @Model.Headline</h2> <br />
+    <label>Vælg parameter</label>
+    <form method="post">
+        <input type="hidden" name="whatTypeTemp" value="@Model.WhatType" />
+      
+
+        <select asp-for="@Model.Value">
+
+            @for (int i = 0; i < Model.ParamValues.Count; i++)
+            {
+                <option value="@Model.ParamValues[i]">@Model.ParamValues[i]</option>
+            }
+        </select>
+
+        <br /><br />
+        <button type="submit" class="col-xs-2 btn btn-default">Fjern @Model.Headline</button>
+
+    </form>
+</div>
+<hr />
+<div class="container">
+    <h2>Tilføj @Model.Headline</h2><br />
+
+    <form method="post">
+        <input type="hidden" asp-for="@Model.WhatType"  />        
+        <label>Parameterværdi</label><br />
+        <input type="text" asp-for="@Model.Value" value="" /><br /><br />
+
+        <button type="submit" class="col-xs-2 btn btn-default">Tilføj @Model.Headline</button>
+    </form>
+
+</div>

@@ -1,0 +1,249 @@
+﻿@using FindGavenCore
+@model EditViewModel
+@{
+    ViewData["Title"] = "CollectData";
+}
+@if (Model.WhatType == 1)
+{
+    <div class="container">
+        <form action="/admin/callProc" method="get">
+            <input type="hidden" name="whatProc" value="@Model.WhatType" />
+            <h3>@Model.Headline</h3> <hr />
+            <label>Minimumspris</label><br />
+            <input type="text" name="minPrice" value="" /><br /><br />
+            <label>Maksimumspris</label><br />
+            <input type="text" name="maxPrice" value="" /><br /><br />
+
+            <button type="submit" class="col-xs-2 btn btn-default">Søg</button><br /><br />
+        </form>
+    </div>
+
+    @if (Model.Presents.Count > 0)
+    {
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="Headline">Gave navn</td>
+                        <td class="Headline">Pris</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var present in Model.Presents)
+                    {
+                        <tr>
+                            <td>@present.Name</td>
+                            <td>@present.Price DKK</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+}
+else if (Model.WhatType == 2)
+{
+    <div class="container">
+        <form action="/admin/callProc" method="get">
+            <input type="hidden" name="whatProc" value="@Model.WhatType" />
+            <h3>@Model.Headline</h3><hr />
+            <select name="id">
+                @for (int i = 0; i < Model.Presents.Count; i++)
+                {
+                    <option value="@Model.Presents[i].Id">@Model.Presents[i].Name</option>
+                }
+            </select> <br /><br />
+
+            <button type="submit" class="col-xs-2 btn btn-default">Søg</button><br /><br />
+        </form>
+    </div>
+    @if (Model.ChosenPresent != null)
+    {
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="Headline">Tags</td>
+                    </tr>
+                    <tr>
+                        <td class="SubHeadline">Værdi</td>
+                        <td class="SubHeadline">Type</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var tag in Model.ChosenPresent.Tags)
+                    {
+
+                        <tr>
+                            <td>@tag.Value</td>
+                            @if (tag.Type == 1)
+                            {
+                                <td>@Model.TypeOccAsString</td>
+                            }
+                            else if (tag.Type == 2)
+                            {
+                                <td>@Model.TypeCatAsString</td>
+                            }
+                            else
+                            {
+                                <td>@Model.TypeWhoAsString</td>
+                            }
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+}
+else if (Model.WhatType == 3)
+{
+    <div class="container">
+        <form action="/admin/callProc" method="get">
+            <input type="hidden" name="whatProc" value="@Model.WhatType" />
+            <h3>@Model.Headline</h3><hr />
+            <select name="tagValue">
+                @for (int i = 0; i < Model.ParamValues.Count; i++)
+                {
+                    <option value="@Model.ParamValues[i]">@Model.ParamValues[i]</option>
+                }
+            </select> <br /><br />
+            <button type="submit" class="col-xs-2 btn btn-default">Søg</button>
+        </form>
+    </div>
+    @if (Model.Presents.Count > 0)
+    {
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="Headline">Gaver som matcher @Model.TagValue</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var present in Model.Presents)
+                    {
+
+                        <tr>
+                            <td>@present.Name</td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+}
+else if (Model.WhatType == 4)
+{
+    <div class="container">
+        <form action="/admin/callProc" method="get">
+            <input type="hidden" name="whatProc" value="@Model.WhatType" />
+            <h3>@Model.Headline</h3><hr />
+            <label>Vælge x antal mest populære gaver</label> <br />
+            <select name="id">
+                @for (int i = 0; i < 100; i++)
+                {
+                    <option value=@i>@i</option>
+                }
+            </select> <br /><br />
+            <button type="submit" class="col-xs-2 btn btn-default">Søg</button>
+        </form>
+    </div>
+    @if (Model.Presents.Count > 0)
+    {
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="Headline">Top @Model.TopGifts mest populære gaver</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var present in Model.Presents)
+                    {
+
+                        <tr>
+                            <td>@present.Name</td>
+                            <td>@present.Rating</td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+}
+else if (Model.WhatType == 5)
+{
+    <div class="container">
+        <form action="/admin/callProc" method="get">
+            <input type="hidden" name="whatProc" value="@Model.WhatType" />
+            <h3>@Model.Headline</h3><hr />
+            <select name="providerId">
+                @for (int i = 0; i < Model.Providers.Count; i++)
+                {
+                    <option value="@Model.Providers[i].Id">@Model.Providers[i].Name</option>
+                }
+            </select> <br /><br />
+            <button type="submit" class="col-xs-2 btn btn-default">Søg</button>
+        </form>
+    </div>
+    @if (Model.Presents.Count > 0)
+    {
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="Headline">Gaver tilhørende @Model.ChosenProvider.Name</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var present in Model.Presents)
+                    {
+
+                        <tr>
+                            <td>@present.Name</td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+}
+else if (Model.WhatType == 6)
+{
+    <br />
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td class="Headline">Antal gaver hver udbyder har</td>
+                </tr>
+                <tr>
+                    <td class="SubHeadline">Udbyder</td>
+                    <td class="SubHeadline">Antal gaver</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var provider in Model.Providers)
+                {
+
+                    <tr>
+                        <td>@provider.Name</td>
+                        <td>@provider.Presents.Count</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+

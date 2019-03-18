@@ -1,0 +1,40 @@
+﻿@using FindGavenCore
+@model EditViewModel
+@{
+    ViewData["Title"] = "EditProvider";
+}
+<div class="container">
+    @ViewData["Error"] 
+    <h2>Fjern udbyder</h2> <br />
+    <label>Vælg udbyder</label>
+    <form action="/admin/editProvider" method="post">
+        <select asp-for="@Model.ProviderId">
+
+
+            @for (int i = 0; i < Model.Providers.Count; i++)
+            {
+                <option value="@Model.Providers[i].Id">@Model.Providers[i].Name</option>
+            }
+        </select>
+        <br /><br />
+        <button type="submit" class="col-xs-2 btn btn-default">Fjern udbyder</button>
+
+    </form>
+</div>
+<hr />
+<div class="container">
+    <h2>Tilføj udbyder</h2> <br />
+    <form action="/admin/editProvider" method="post">
+        <label for="nameInput">Navn</label><br />
+        <input type="text" asp-for="@Model.Name" id="nameInput" value="" /><br /><br />
+        <label for="decriptionInput">Beskrivelse</label><br />
+        <input type="text" asp-for="@Model.Description" id="descriptionInput" value="" /><br /><br />
+        <label for="">Billedsti</label><br />
+        <input type="text" asp-for="@Model.Image" id="imageInput" value="" /><br /><br />
+
+        <button type="submit" class="col-xs-2 btn btn-default">Tilføj udbyder</button> <br /><br /><br />
+    </form>
+
+    <a href="/Admin/Login">Tilbage</a>
+</div>
+

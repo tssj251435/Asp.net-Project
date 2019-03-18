@@ -1,0 +1,42 @@
+﻿@using FindGavenCore
+
+<h1>Admin funktionalitet</h1>
+
+<div class="container">
+    <h2>Dataindsamling</h2>
+    @*DETTE SKAL LAVES OM. DER SKAL SENDES EN VÆRDI MED I FORM AF EN STRING SOM BESTEMMER HVILKEN COLLECTSIDE DER SKAL VISES. LAV DET MÅSKE MED ASP-CONTROLLER=ADMIN, ASP-ACTION=COLLECTDATA*@
+    @*<a asp-controller="Admin" asp-action="CollectData">Se gaver inden for prisklasse</a><br />*@
+    <a href="Admin/Collect/1">Se gaver inden for prisklasse</a><br />
+    <a href="Admin/Collect/2">Se de tags en udvalgt gave har</a><br />
+    <a href="Admin/Collect/3">Se matchende gaver ud fra ét tag</a><br />
+    <a href="Admin/Collect/4">Se de mest populære gaver</a><br />
+    <a href="Admin/Collect/5">Se en specifik udbyders gaver</a> <br />
+    <a href="Admin/Collect/6">Se hvilke gaver der hører til hvilken udbyder</a><br /><br /><hr />
+
+    <h2>Manupulation af data</h2>
+    <h3>Udbyder</h3><br />
+    <a href="/Admin/EditProvider">Tilføj/fjern udbyder</a><br />
+    <h3>Gave</h3><br />
+    <a href="/Admin/EditPresent">Tilføj/fjern gave</a><br />
+    <h3>Tags</h3><br />
+    <a href="/Admin/EditTag/1">Tilføj/Fjern anledningtag</a><br />
+    <a href="/Admin/EditTag/2">Tilføj/Fjern kategorigtag</a><br />
+    <a href="/Admin/EditTag/3">Tilføj/Fjern modtagertag</a><br />
+    <h3>Parameterværdier</h3><br />
+    <a href="/Admin/EditParamValues/1">Tilføj/Fjern anledningværdi</a><br />
+    <a href="/Admin/EditParamValues/2">Tilføj/Fjern kategoriværdi</a><br />
+    <a href="/Admin/EditParamValues/3">Tilføj/Fjern modtagerværdi</a><br />
+    <h3>Billeder</h3><br />
+    <a href="/admin/images">Tilføj/fjern af billeder</a> <br /><br />
+
+
+    <form method="POST" action="/admin/logout">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-default">Logout</button>
+    </form>
+
+
+
+
+</div>
+
